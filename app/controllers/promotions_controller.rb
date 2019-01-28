@@ -32,7 +32,9 @@ class PromotionsController < ApplicationController
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/AbcSize
 
-  def show; end
+  def show
+    @promotion = PromotionPresenter.new(@promotion, current_user)
+  end
 
   def search
     @promotions = Promotion.find_promotion_by_user params[:search]

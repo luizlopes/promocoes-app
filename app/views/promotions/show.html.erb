@@ -5,7 +5,7 @@
 <% end %>
 <h3 class="ls-title-3">
   <%= @promotion.name.capitalize %>
-  <%= promotion_status(@promotion) %>
+  <%= @promotion.status %>
 </h3>
 <table class="ls-table ls-table-striped">
   <tbody>
@@ -86,11 +86,5 @@
   </div>
 <% end %>
 
-<% unless current_user == @promotion.creation_user %>
-  <% if @promotion.pending? %>
-    <div class="ls-actions-btn">
-      <%= link_to 'Aprovar Promoção', approve_promotion_path(@promotion), method: :put, class: 'ls-btn-primary ls-btn-lg' %>
-    </div>
-  <% end %>
-<% end %>
+<%= @promotion.approval_link %>
 <%= render partial: 'application/back_button', locals: { my_path: :root } %>
