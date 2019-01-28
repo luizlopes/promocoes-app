@@ -1,0 +1,33 @@
+<% promotions.each do |promotion| %>
+  <div class="flex-item">
+    <table class="ls-table ls-table-striped">
+      <h2>
+        <%= link_to promotion_path(promotion) do %>
+          <%= promotion.name %>
+        <% end %>
+      </h2>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Desconto em %: </strong><%= promotion.discount %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Duração</strong> <%= promotion.days %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Prefixo</strong> <%= promotion.prefix %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Quantidade cupons</strong> <%= promotion.coupons.count %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>

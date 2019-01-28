@@ -1,0 +1,6 @@
+production:
+  url: http://vps1549.publiccloud.com.br/api/v1/products
+development:
+  url: http://vps1549.publiccloud.com.br/api/v1/products
+test:
+  url: http://vps1549.publiccloud.com.br/api/v1/products

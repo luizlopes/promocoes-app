@@ -1,0 +1,43 @@
+<% content_for :title do %>
+<h1 class="ls-title-intro ls-ico-plus">
+  Cadastrar Promoção
+</h1>
+<% end %>
+<%= form_for @promotion, html: { class:'ls-form row' } do |f| %>
+  <fieldset>
+    <div class="ls-label col-md-3">
+      <%= f.label :description, 'Descrição', class: 'ls-label-text' %>
+      <%= f.text_field :description %>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :discount, 'Desconto', class: 'ls-label-text' %>
+      <%= f.number_field :discount %>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :name, 'Nome', class: 'ls-label-text' %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :product_id, 'Produtos', class: 'ls-label-text' %>
+      <div class="ls-custom-select">
+        <%= f.collection_select(:product_id, @products, :id, :name, {} , class: 'ls-select') %>
+      </div>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :start_at, 'Data de início', class: 'ls-label-text'  %>
+      <%= f.date_field :start_at %>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :days, 'Duração', class: 'ls-label-text'  %>
+      <%= f.number_field :days %>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :coupon_limit, 'Limite de cupons para emissão', class: 'ls-label-text'  %>
+      <%= f.number_field :coupon_limit %>
+    </div>
+    <div class="ls-actions-btn">
+      <%= f.submit 'Criar Promoção', class: 'ls-btn-primary ls-btn-lg' %>
+    </div>
+  </fieldset>
+<% end %>
+<%= render partial: 'application/back_button', locals: { my_path: :root } %>

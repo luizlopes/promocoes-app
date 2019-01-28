@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="ls-box-filter">
+      <%= form_tag search_promotions_path, method: :post, class: 'ls-form ls-form-inline'  do %>
+        <label class="ls-label col-md-5 col-sm-5">
+          <%= label_tag :search, 'Search', class: 'ls-label-text' %>
+          <%= text_field_tag :search, nil, class: 'ls-field' %>
+        </label>
+        <div class="ls-actions-btn">
+          <%= submit_tag 'Pesquisar', class: 'ls-btn' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="ls-box-filter">
+      <%= form_tag status_promotions_path, method: :get, class: 'ls-form ls-form-inline' do %>
+        <label class="ls-label col-md-5 col-sm-5">
+          <%= label_tag :status, 'Status', class: 'ls-label-text' %>
+          <div class="ls-custom-select">
+            <%= select_tag(:status, options_for_select(Promotion.statuses.keys), class: 'ls-select') %>
+          </div>
+        </label>
+        <div class="ls-actions-btn">
+          <%= submit_tag 'Filtrar', class: 'ls-btn' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

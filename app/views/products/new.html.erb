@@ -1,0 +1,19 @@
+<%= form_for @product, html: { class: 'ls-form row' } do |f| %>
+  <fieldset>
+    <div class="ls-label col-md-3">
+      <%= f.label :name, 'Nome', class: 'ls-label-text' %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :description, 'Descrição', class: 'ls-label-text' %>
+      <%= f.text_field :description %>
+    </div>
+    <div class="ls-label col-md-3">
+      <%= f.label :product_key, 'Chave do produto', class: 'ls-label-text' %>
+      <%= f.text_field :product_key %>
+    </div>
+    <div class="ls-actions-btn">
+      <%= f.submit 'Criar Produto', class: 'ls-btn-primary ls-btn-lg' %>
+    </div>
+  </fieldset>
+<% end %>

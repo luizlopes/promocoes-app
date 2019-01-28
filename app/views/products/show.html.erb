@@ -1,0 +1,8 @@
+<% content_for :title do %>
+  <h1 class="ls-title-intro ls-ico-origins">
+    Produto <%= @product.name %>
+  </h1>
+<% end %>
+
+<p><strong>Descrição: </strong><%= @product.description %></p>
+<p><strong>Código do produto: </strong><%= @product.product_key %></p>

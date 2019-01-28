@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "name": "CAMISETAS",
+      "description": "CAMISETAS BONITAS",
+      "product_key": "CAMISA"
+    },
+    {
+      "name": "LIVROS",
+      "description": "LIVROS SOBRE RUBY",
+      "product_key": "LIVR0"
+    }
+  ]
+}

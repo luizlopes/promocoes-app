@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+  <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
+    <a href="#" class="ls-ico-user">
+      <span class="ls-name">
+        <%= current_user.name %>
+      </span>
+    </a>
+    <nav class="ls-dropdown-nav ls-user-menu">
+      <ul>
+        <li>
+          <%= link_to 'sair', destroy_user_session_path, method: :delete %>
+        </li>
+       </ul>
+    </nav>
+  </div>
+<% else %>
+  <div class="ls-user-account">
+    <span class="ls-ico-user">
+      <%= link_to 'Login', new_user_session_path, class: 'ls-btn-primary' %>
+    </span>
+  </div>
+<% end %>

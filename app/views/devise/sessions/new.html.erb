@@ -1,0 +1,41 @@
+<div class="ls-login-parent">
+  <div class="ls-login-inner">
+    <div class="ls-login-container">
+      <div class="ls-login-box">
+        <h1 class="ls-login-logo">
+          <h2>Log in</h2>
+        </h1>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <br/>
+            <%= f.label :email, class: 'ls-label' %>
+              <%= f.email_field :email,  class: 'ls-login-bg-user ls-field-lg',
+                                         required: true, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <br/>
+            <%= f.label :password, class: 'ls-label'%>
+              <%= f.password_field :password, autocomplete: 'off',
+                                    class: 'ls-login-bg-password ls-field-lg',
+                                    required: true %>
+
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+          <br/>
+          <div class="actions">
+            <%= f.submit "Log in", class:'ls-btn-primary ls-btn-block ls-btn-lg' %>
+          </div>
+        <% end %>
+        <br/>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

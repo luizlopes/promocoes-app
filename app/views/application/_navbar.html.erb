@@ -1,0 +1,40 @@
+<div class="ls-topbar">
+  <!-- Barra de Notificações -->
+  <div class="ls-notification-topbar">
+
+    <!-- Dropdown com detalhes da conta de usuário -->
+    <%= render 'application/navbar/user' %>
+  </div>
+
+  <span class="ls-show-sidebar ls-ico-menu"></span>
+
+  <h1 class="ls-brand-name">
+    <a href="#" class="ls-ico-earth">
+      Cupons
+    </a>
+  </h1>
+
+</div>
+
+<aside class="ls-sidebar">
+  <div class="ls-sidebar-inner">
+    <nav class="ls-menu">
+      <ul>
+        <li class="ls-active" >
+          <%= link_to 'Home', promotions_path %>
+        </li>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to 'Nova Promoção', new_promotion_path %>
+          </li>
+          <% if current_user.admin? %>
+            <li>
+              <%= link_to 'Novo Produto', new_product_path %>
+            </li>
+          <% end %>
+        <% else %>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</aside>

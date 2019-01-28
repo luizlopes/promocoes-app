@@ -1,0 +1,52 @@
+<% content_for :title do %>
+  <h1 class="ls-title-intro ls-ico-list">
+    Coupons da Promoção
+  </h1>
+<% end %>
+<h3 class="ls-title-3">Cupons Gerados:</h3>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>
+        Código
+      </th>
+      <th>
+        Criado por
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Data de criação
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @coupons.each do |coupon| %>
+      <tr>
+        <td>
+          <%= coupon.code %>
+        </td>
+        <td>
+          <%= coupon.user.name %>
+        </td>
+        <td>
+          <%= enum coupon.status %>
+        </td>
+        <td>
+          <%= coupon.created_at.to_formatted_s(:db) %>
+        </td>
+        <td>
+          <div>
+            <% if coupon.available? %>
+              <%= link_to 'Cancelar', promotion_coupon_path(coupon.promotion, coupon), method: :delete %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= render partial: 'application/back_button', locals: { my_path: @coupons.first.promotion } %>

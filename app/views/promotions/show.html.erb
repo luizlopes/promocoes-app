@@ -1,0 +1,104 @@
+<% content_for :title do %>
+  <h1 class="ls-title-intro ls-ico-origins">
+    Promoção <%= @promotion.name %>
+  </h1>
+<% end %>
+<h3 class="ls-title-3">
+  <%= @promotion.name.capitalize %>
+  <% if @promotion.pending? %>
+    <span class="ls-tag-warning">Pendente</span>
+  <% elsif @promotion.approved? %>
+    <span class="ls-tag-info">Aprovada</span>
+  <% elsif @promotion.activated? %>
+    <span class="ls-tag-success">Ativado</span>
+  <% else %>
+    <span class="ls-tag-alert">Expirada</span>
+  <% end %>
+</h3>
+<table class="ls-table ls-table-striped">
+  <tbody>
+    <tr>
+      <td><strong>Criada por: </strong><%= @promotion.creation_user.name.capitalize %></td>
+    </tr>
+    <tr>
+      <td><strong>Aprovada por: </strong>
+        <% if @promotion.approved? || @promotion.activated? %>
+          <%= @promotion.approval.user.name.capitalize %></td>
+        <% else %>
+            ----
+        <% end %>
+    </tr>
+    <tr>
+      <td>
+        <strong>Descrição: </strong><%= @promotion.description %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Data de início: </strong><%= l @promotion.start_at, format: :long %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Duração: </strong><%= @promotion.days %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Desconto: </strong><%= @promotion.discount %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Quantidade total de cupons permitidos: </strong><%= @promotion.coupon_limit %>
+      </td>
+    <tr>
+      <td>
+        <strong>Quantidade de cupons criados: </strong><%= @promotion.coupons.count %>
+        <% if @promotion.coupons.count > 0 %>
+          <span class="coupon-link"><%= link_to 'Ver cupons', promotion_coupons_path(@promotion) %></span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Produto </strong><%= @promotion.product.name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Prefixo do produto: </strong><%= @promotion.prefix %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<% if @promotion.approved? %>
+  <div class="ls-box ls-box-gray">
+    <h3 class="ls-title-3">Ativar Promoção</h3>
+    <%= link_to 'Ativar', active_promotion_path(@promotion), class: 'ls-btn-primary' %>
+  </div>
+
+<% end %>
+
+<% if @promotion.activated? || @promotion.approved? %>
+  <div class="ls-box ls-box-gray">
+    <h3 class="ls-title-3">Emissão de Cupons</h3>
+    <%= form_tag(promotion_coupons_path(@promotion), class:'ls-form ls-form-inline row', method: 'post') do %>
+      <div class="ls-label col-md-2">
+        <%= label_tag(:amount, 'Quantidade', class: 'ls-label-text') %>
+        <%= text_field_tag(:amount) %>
+      </div>
+      <%= submit_tag('Emitir Cupons', class: 'ls-btn-primary') %>
+    <% end %>
+  </div>
+<% end %>
+
+<% unless current_user == @promotion.creation_user %>
+  <% if @promotion.pending? %>
+    <div class="ls-actions-btn">
+      <%= link_to 'Aprovar Promoção', approve_promotion_path(@promotion), method: :put, class: 'ls-btn-primary ls-btn-lg' %>
+    </div>
+  <% end %>
+<% end %>
+<%= render partial: 'application/back_button', locals: { my_path: :root } %>

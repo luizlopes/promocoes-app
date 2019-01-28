@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html class="ls-theme-green">
+  <head>
+    <title>Cupom</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/edge/stylesheets/locastyle.css">
+  </head>
+
+  <body>
+    <%= render 'application/navbar' %>
+    <main class="ls-main">
+      <div class="container-fluid">
+        <%= yield :title %>
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </div>
+    </main>
+
+    <%= javascript_include_tag '//assets.locaweb.com.br/locastyle/3.10.0/javascripts/locastyle.js' %>
+  </body>
+</html>

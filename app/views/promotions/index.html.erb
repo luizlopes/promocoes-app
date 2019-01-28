@@ -1,0 +1,32 @@
+<% content_for :title do %>
+  <h1 class="ls-title-intro ls-ico-home">
+    Promoções
+  </h1>
+<% end %>
+<%= render 'aside' %>
+<% if user_signed_in? %>
+  <div class="row flex-row">
+    <h3 class="ls-txt-center ls-md-margin-top">Minhas promoções</h3>
+    <div class="flex-container">
+      <%= render partial: 'promotion_table', locals: { promotions: @promotions.user_promotion(current_user) } %>
+    </div>
+  </div>
+  <div class="row flex-row">
+    <h3 class="ls-txt-center ls-md-margin-top">Promoções pendentes</h3>
+    <div class="flex-container">
+      <%= render partial: 'promotion_table', locals: { promotions: @promotions.pending_promotions(current_user) } %>
+    </div>
+  </div>
+  <div class="row flex-row">
+    <h3 class="ls-txt-center ls-md-margin-top">Outras promoções</h3>
+    <div class="flex-container">
+      <%= render partial: 'promotion_table', locals: { promotions: @promotions.other_promotions(current_user) } %>
+    </div>
+  </div>
+<% else %>
+  <div class="row flex-row">
+    <div class="flex-container">
+      <h3>Este é o sistema de gestão de cupons. Faca login para acessar.</h3>
+    </div>
+  </div>
+<% end %>

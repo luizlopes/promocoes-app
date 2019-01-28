@@ -1,0 +1,9 @@
+<div>
+  <%= coupon.code %>
+  <% if coupon.available? %>
+    <p>Disponível</p>
+    <%= link_to 'Cancelar', promotion_coupon_path(coupon.promotion, coupon), method: :delete %>
+  <% else %>
+    <p>Indisponível</p>
+  <% end %>
+</div>
