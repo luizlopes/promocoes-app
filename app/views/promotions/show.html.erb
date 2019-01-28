@@ -5,15 +5,7 @@
 <% end %>
 <h3 class="ls-title-3">
   <%= @promotion.name.capitalize %>
-  <% if @promotion.pending? %>
-    <span class="ls-tag-warning">Pendente</span>
-  <% elsif @promotion.approved? %>
-    <span class="ls-tag-info">Aprovada</span>
-  <% elsif @promotion.activated? %>
-    <span class="ls-tag-success">Ativado</span>
-  <% else %>
-    <span class="ls-tag-alert">Expirada</span>
-  <% end %>
+  <%= promotion_status(@promotion) %>
 </h3>
 <table class="ls-table ls-table-striped">
   <tbody>
