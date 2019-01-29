@@ -23,11 +23,8 @@
         <li class="ls-active" >
           <%= link_to 'Home', promotions_path %>
         </li>
-        <% if user_signed_in? %>
-          <%= current_user.new_promotion_link %>
-          <%= current_user.new_product_link %>
-        <% else %>
-        <% end %>
+        <%= current_user.new_promotion_link %>
+        <%= current_user.new_product_link %>
       </ul>
     </nav>
   </div>
