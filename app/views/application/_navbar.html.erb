@@ -27,11 +27,7 @@
           <li>
             <%= link_to 'Nova Promoção', new_promotion_path %>
           </li>
-          <% if current_user.admin? %>
-            <li>
-              <%= link_to 'Novo Produto', new_product_path %>
-            </li>
-          <% end %>
+          <%= current_user.new_product_link %>
         <% else %>
         <% end %>
       </ul>
