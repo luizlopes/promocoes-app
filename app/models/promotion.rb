@@ -45,4 +45,8 @@ class Promotion < ApplicationRecord
   def active!
     update(activated_at: Time.zone.now, status: :activated)
   end
+
+  def created_by?(user)
+    creation_user.id == user.id
+  end
 end

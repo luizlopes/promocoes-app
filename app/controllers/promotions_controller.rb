@@ -17,7 +17,7 @@ class PromotionsController < ApplicationController
     @promotion = Promotion.new(params_promotion)
     @promotion.product = Product.find(@promotion.product_id)
     @promotion.prefix = @promotion.product.product_key
-    @promotion.creation_user = current_user
+    @promotion.creation_user_id = current_user.id
 
     if @promotion.save
       @promotion.pending!
@@ -53,7 +53,7 @@ class PromotionsController < ApplicationController
 
   def approve
     @promotion.approved!
-    @promotion.create_approval(user: current_user)
+    @promotion.create_approval(user_id: current_user.id)
     flash[:success] = 'Promoção aprovada!'
     redirect_to @promotion
   end

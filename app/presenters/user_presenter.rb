@@ -5,8 +5,16 @@ class UserPresenter < SimpleDelegator
   def new_product_link
     return '' unless admin?
 
-    helpers.content_tag(:li) do
+    content_tag(:li) do
       link_to 'Novo Produto', new_product_path
+    end
+  end
+
+  def new_promotion_link
+    return '' unless persisted?
+
+    content_tag(:li) do
+      link_to 'Nova Promoção', new_promotion_path
     end
   end
 

@@ -29,7 +29,7 @@ class PromotionPresenter < SimpleDelegator
   end
 
   def approval_link
-    return '' if creation_user == current_user
+    return '' if created_by? current_user
     return '' unless pending?
 
     content_tag(:div, class: 'ls-actions-btn') do

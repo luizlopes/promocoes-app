@@ -24,9 +24,7 @@
           <%= link_to 'Home', promotions_path %>
         </li>
         <% if user_signed_in? %>
-          <li>
-            <%= link_to 'Nova Promoção', new_promotion_path %>
-          </li>
+          <%= current_user.new_promotion_link %>
           <%= current_user.new_product_link %>
         <% else %>
         <% end %>

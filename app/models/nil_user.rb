@@ -7,4 +7,8 @@ class NilUser
   def name
     '----'
   end
+
+  def persisted?
+    false
+  end
 end

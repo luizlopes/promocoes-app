@@ -8,4 +8,10 @@ class PromotionDecorator < Draper::Decorator
   def name
     "Promoção #{object.name}"
   end
+
+  private
+  def approval
+    #super
+    object.approval || NilApproval.new
+  end
 end
