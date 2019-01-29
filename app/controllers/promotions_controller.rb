@@ -11,13 +11,8 @@ class PromotionsController < ApplicationController
     @products = Product.all
   end
 
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   def create
-    @promotion = Promotion.new(params_promotion)
-    @promotion.product = Product.find(@promotion.product_id)
-    @promotion.prefix = @promotion.product.product_key
-    @promotion.creation_user_id = current_user.id
+    @promotion = PromotionBuilder.build(params_promotion, current_user)
 
     if @promotion.save
       @promotion.pending!
@@ -29,8 +24,6 @@ class PromotionsController < ApplicationController
       render :new
     end
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
 
   def show
     @promotion = PromotionPresenter.new(@promotion.decorate, current_user)
