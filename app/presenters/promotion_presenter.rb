@@ -29,8 +29,7 @@ class PromotionPresenter < SimpleDelegator
   end
 
   def approval_link
-    return '' if created_by? current_user
-    return '' unless pending?
+    return '' unless authorizer.can_approve?
 
     content_tag(:div, class: 'ls-actions-btn') do
       link_to 'Aprovar Promoção', approve_promotion_path(id: id), method: :put, class: 'ls-btn-primary ls-btn-lg'
@@ -40,5 +39,9 @@ class PromotionPresenter < SimpleDelegator
   private
   def helpers
     ApplicationController.helpers
+  end
+
+  def authorizer
+    @authorizer ||= PromotionAuthorizer.new(self, current_user)
   end
 end
