@@ -33,7 +33,7 @@ class PromotionsController < ApplicationController
   # rubocop:enable Metrics/AbcSize
 
   def show
-    @promotion = PromotionPresenter.new(@promotion, current_user)
+    @promotion = PromotionPresenter.new(@promotion.decorate, current_user)
   end
 
   def search

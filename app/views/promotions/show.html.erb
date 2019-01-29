@@ -1,6 +1,6 @@
 <% content_for :title do %>
   <h1 class="ls-title-intro ls-ico-origins">
-    Promoção <%= @promotion.name %>
+    <%= @promotion.name %>
   </h1>
 <% end %>
 <h3 class="ls-title-3">
@@ -14,11 +14,8 @@
     </tr>
     <tr>
       <td><strong>Aprovada por: </strong>
-        <% if @promotion.approved? || @promotion.activated? %>
-          <%= @promotion.approval.user.name.capitalize %></td>
-        <% else %>
-            ----
-        <% end %>
+        <%= @promotion.approver_name %>
+      </td>
     </tr>
     <tr>
       <td>
